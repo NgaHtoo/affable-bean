@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html th:replace="layout/mainLayout :: layout(~{::main})" lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<main role="main">
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="d-flex flex-column ">
+                    <a class="bg-button mb-3 mt-5" th:href="@{'/products?cid=1'}">Dairy</a>
+
+                    <a class="bg-button mb-3" th:href="@{'/products?cid=2'}">Meat</a>
+
+                    <a class="bg-button mb-3" th:href="@{'/products?cid=3'}">Bakery</a>
+
+                    <a class="bg-button mb-3" th:href="@{'/products?cid=4'}">Fruits & Vegetables</a>
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <table class="table table-stripe">
+                    <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="pro : ${products}">
+                        <td><img th:src="@{'/images/products/' + ${pro.name} + '.png'}"
+                                 src="../static/images/products" alt="images"></td>
+                        <td th:text="${pro.name}"></td>
+                        <td th:text="${pro.price+'$'}"></td>
+                        <td><a th:href="@{'/add-cart?id='+${pro.id}}" class="btn btn-primary">Buy</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+</main>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html  th:replace="layout/mainLayout :: layout(~{::main})" lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<main role="main">
+  <div class="container">
+  <p>Your shopping cart contains <span th:text="${cartSize}"></span> items.</p>
+    <div class="row">
+      <div class="col-md-4">
+        <a th:href="@{/clear-cart}" class="btn btn-danger">Clear cart</a>
+      </div>
+      <div class="col-md-4">
+        <a th:href="@{/}" class="btn btn-primary">Continue shopping</a>
+      </div>
+      <div class="col-md-4">
+        <a th:href="@{/proceed}" class="btn btn-success">Proceed to checkout-></a><br><br>
+        <h5>subtotal : $ <span th:utext="${#numbers.formatDecimal(total,0,2)}"></span></h5>
+      </div>
+      </div>
+    <br>
+    <form th:action="@{/checkout-v2}" th:object="${cartItem}" method="post">
+          <table class="table table-stripe">
+            <thead>
+            <tr>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Quantity</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="ct : ${cartItems}">
+              <td><img th:src="@{'/images/products/' + ${ct.name} + '.png'}"
+                       src="../static/images/products" alt="images"></td>
+              <td th:text="${ct.name}"></td>
+              <td th:text="${ct.price+'$'}"></td>
+              <td th:if="${!ct.render}" th:text="${ct.quantity}"></td>
+              <td th:if="${ct.render}"><input type="number" min="1" class="form-control" th:field="*{quantityLinkedList}">
+              </td>
+              <td th:if="${changeButton}"><input  type="submit"  class="btn btn-outline-primary" value="Update"></td>
+
+            </tr>
+            </tbody>
+          </table>
+      <hr class="my-3">
+    <div>
+      <a th:if="${!changeButton}" th:href="@{/checkout-v1}" class="btn btn-success">CheckOut</a>
+    </div>
+    </form>
+    </div>
+
+</main>
+</body>
+</html>

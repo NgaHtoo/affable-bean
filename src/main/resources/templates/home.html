@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html th:replace="layout/mainLayout :: layout(~{::main})" lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<main role="main">
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Welcome to the online home of the Affable Bean Green Grocer.</h3><br>
+                <p class="lead">
+                    Enjoy browsing and learning more about out unique home delivery service bringing you fresh organic
+                    produce,diary,meats,breads and other delicious and healthy items to your doorstep.
+                </p>
+            </div>
+            <div class="col-md-6">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <a th:href="@{'/products?cid=1'}">
+                        <img src="../static/images/categories/dairy.jpg" alt="images"
+                             th:src="@{/images/categories/dairy.jpg}" class="img-fluid">
+                        </a>
+
+                    </div>
+                    <div class="col-md-6">
+                        <a th:href="@{'/products?cid=2'}">
+                        <img src="../static/images/categories/meats.jpg" alt="images"
+                             th:src="@{/images/categories/meats.jpg}" class="img-fluid">
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <a th:href="@{'/products?cid=3'}">
+                        <img src="../static/images/categories/bakery.jpg" alt="images"
+                             th:src="@{/images/categories/bakery.jpg}" class="img-fluid">
+                        </a>
+
+                    </div>
+                    <div class="col-md-6">
+                        <a th:href="@{'/products?cid=4'}">
+                        <img src="../static/images/categories/fruitveg.jpg" alt="images"
+                             th:src="@{/images/categories/fruitveg.jpg}" class="img-fluid">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+</body>
+</html>

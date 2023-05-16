@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html th:replace="layout/mainLayout :: layout(~{::main})" lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<main role="main">
+  <div class="container">
+      <div class="row mr-5">
+          <h4>Your order has been successfully processed and will be delivered in 24 hours.</h4>
+          <h5>Please take a note of your confirmation number : <span th:text="${orderCode}"></span><br>
+          If you have a query concerning your order, feel free to <u>contact us</u>.</h5>
+      </div>
+      <br>
+      <div class="row">
+          <div class="col-md-8">
+              <table class="table table-striped">
+
+                  <thead>
+                  <tr><h6>Order Summery</h6></tr>
+                  <tr>
+                      <th>Product</th>
+                      <th>Quantity</th>
+                      <th>Price</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr th:each="cartItem : ${cartItems}">
+                      <td th:text="${cartItem.name}"></td>
+                      <td th:text="${cartItem.quantity}"></td>
+                      <td th:with="q=${cartItem.quantity} , p=${cartItem.price}, var = ${q * p}" th:text="${var}"></td>
+                  </tr>
+                  <tr>
+                      <td><p>--------------------------------------------------------------</p></td>
+                      <td></td>
+                      <td></td>
+                  </tr>
+                  <tr>
+
+                      <td>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Delivery Surcharge</td>
+                      <td> : </td>
+                      <td>$ 3.00</td>
+                  </tr>
+                  <tr>
+
+                      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total</td>
+                      <td> : </td>
+                      <td>$ <span th:utext="${#numbers.formatDecimal(total,0,2)}+3"></span></td>
+                  </tr>
+                  <tr>
+                      <td><p>--------------------------------------------------------------</p></td>
+                      <td></td>
+                      <td></td>
+                  </tr>
+                  <tr>
+                      <td>Data Processed</td>
+                      <td> : </td>
+                      <td th:text="${#dates.format(#dates.createNow(), 'dd MMM yyyy HH:mm')}"></td>
+                  </tr>
+                  </tbody>
+              </table>
+          </div>
+          <div class="col-md-4">
+              <table class="table table-striped">
+                    <thead>
+                    <tr>Delivery Address</tr>
+                    </thead>
+                  <tbody>
+                  <tr th:each="cus : ${customers}">
+                      <td th:text="${cus.getName()}"></td>
+                  </tr>
+                  <tr th:each="cus : ${customers}">
+                       <td th:text="${cus.getAddress()}"></td>
+                  </tr>
+                  <tr th:each="cus : ${customers}">
+                      <td>Prague : <span th:text="${cus.getPrague()}"></span><br><p>-------------------------</p></td>
+                  </tr>
+                  <tr th:each="cus : ${customers}">
+                      <td th:text="${cus.getEmail()}"></td>
+                  </tr>
+                  <tr th:each="cus : ${customers}">
+                      <td th:text="${cus.getPhone()}"></td>
+                  </tr>
+<!--                  <tr>-->
+<!--                      <td th:text="${customers.name}"></td>-->
+<!--                  </tr>-->
+<!--                  <tr>-->
+<!--                      <td th:text="${customers.address}"></td>-->
+<!--                  </tr>-->
+<!--                  <tr>-->
+<!--                      <td th:text="${customers.prague}"></td>-->
+<!--                  </tr>-->
+<!--                <tr>-->
+<!--                    <td>-->
+<!--                         <p>&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</p>-->
+<!--                    </td>-->
+<!--                </tr>-->
+<!--                  <tr>-->
+<!--                      <td>email : <span th:text="${customers.email}"></span></td>-->
+<!--                  </tr>-->
+<!--                  <tr>-->
+<!--                      <td>phone : <span th:text="${customers.phone}"></span></td>-->
+<!--                  </tr>-->
+
+                  </tbody>
+              </table>
+          </div>
+
+      </div>
+  </div>
+</main>
+</body>
+</html>

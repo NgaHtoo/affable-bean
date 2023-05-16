@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html th:replace="layout/mainLayout :: layout(~{::main})" lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<main role="main">
+  <div class="container">
+  <h5>Checkout</h5>
+  <p>In order to purchase the items in your shopping cart, please provide us with the following information.</p>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card ">
+            <div class="card-body">
+              <form th:action="@{/purchase}" th:object="${customer}" method="post">
+              <label for="name">Name</label>
+              <input th:field="*{name}" class="form-control" type="text" id="name"><br>
+              <label  for="email">Email</label>
+              <input th:field="*{email}" class="form-control" type="text" id="email"><br>
+              <label for="address">Address</label>
+              <input  th:field="*{address}" class="form-control" type="text" id="address"><br>
+              <label for="Phone">Phone</label>
+              <input th:field="*{phone}" class="form-control" type="text" id="Phone"><br>
+               <label for="prague">Prague</label>
+              <input  th:field="*{prague}" class="form-control" type="number" id="prague"><br>
+               <label for="credit">Credit Card Number</label>
+              <input th:field="*{creditCard}" class="form-control" type="text" id="credit"><br>
+                <input type="submit" class="btn btn-success" value="Submit Purchase">
+              </form>
+            </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card ">
+          <div class="card-body">
+
+          <br><br><br>
+          <p>*Next day delivery is guaranteed.</p>
+          <p>*A $3 delivery surcharge is <br>applied to all orders.</p>
+          <div class="container">
+            <h5>subtotal : $ <span th:utext="${#numbers.formatDecimal(total,0,2)}"></span></h5>
+            <h5>delivery surcharge : $ 3</h5>
+            <p>--------------------------------------</p>
+            <h5>total : $ <span th:utext="${#numbers.formatDecimal(total,0,2)}+3"></span></h5>
+          </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+</body>
+</html>
